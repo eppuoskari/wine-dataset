@@ -5,7 +5,7 @@
 ---
 
 ## 🧠 Project Overview
-We built a normalized **MySQL** database from a cleaned wine dataset and used **SQL + Python** to investigate how **origin, closure type, and tasting characteristics** relate to **price**. The workflow covers data loading (staging), transformation, modeling (ERD), and reproducible analysis.
+We built a normalized **MySQL** database from a, previously cleaned by us, wine dataset and used **SQL + Python** to investigate how **origin, closure type, and tasting characteristics** relate to **price**. The workflow covers data loading (staging), transformation, modeling (ERD), and reproducible analysis.
 
 ---
 
