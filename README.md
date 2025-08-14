@@ -1,46 +1,69 @@
-# wine-dataset
-🧠 Project Overview
+# Wine Analysis — SQL Mini Project
 
-We took a cleaned wine dataset and built a normalized MySQL database to answer three questions about price, closures, and tasting characteristics. The source subset contains 1,266 wines from 26 countries. 
+**Team Slytherin** — Eppu • Levent • María • Nodir • Lucie
 
-🎯 Objectives (Hypotheses)
+---
 
-Where do the most expensive wines come from?
+## 🧠 Project Overview
+We built a normalized **MySQL** database from a cleaned wine dataset and used **SQL + Python** to investigate how **origin, closure type, and tasting characteristics** relate to **price**. The workflow covers data loading (staging), transformation, modeling (ERD), and reproducible analysis.
 
-Does the closure (cork, screwcap, etc.) correlate with price?
+---
 
-What characteristics are shared by expensive wines? 
+## 🎯 Objectives (Hypotheses)
+1) **Where do the most expensive wines come from?**  
+2) **Does the closure (cork, screwcap, etc.) correlate with price?**  
+3) **What characteristics are shared by expensive wines?**
 
-🗺️ Data & Modeling
+---
 
-Preparation roadmap: data selection, cleaning/standardization in pandas, ERD design, SQL query development, analysis. 
+## 🗺️ Data & Modeling
+- **Data prep:** cleaned CSV → **staging table** → transformed into a normalized schema.  
+- **Schema (core tables):** `main` (facts), `wine_info` (titles, descriptions, vintage), lookups `type`, `closure`, `primary_grape`, and the many-to-many pair `characteristic` ↔ `wine_characteristic`.  
+- **ERD approach:** primary/foreign keys with `wine_id` at the center, enabling joins for region, closure, grapes, and characteristics.
 
-Schema (core tables): main (facts), wine_info, lookups type, closure, primary_grape, and the M:N pair characteristic ↔ wine_characteristic. 
+---
 
-🔍 Methodology ( How we worked )
+## 🔍 Methodology
+- Load cleaned CSV to **staging** (pandas / Workbench Wizard).  
+- Transform and normalize into the ERD tables.  
+- Write analytical SQL (**GROUP BY**, **JOIN**, **WINDOW** functions like `NTILE`) for premium tiers and comparisons.  
+- Validate with quick sanity checks (row counts, NULLs, types), then export compact result tables for presentation.
 
-Loaded the cleaned CSV into a staging table, then transformed into the normalized tables.
+---
 
-Wrote analytical SQL (GROUP BY, JOINs, window functions like NTILE for premium tiers).
+## 📊 Key Findings (Short)
+- **Premium origins:** a consistent set of regions leads average prices when a minimum sample per region is enforced.  
+- **Closures & price:** **natural cork** wines are **meaningfully pricier on average** than screwcap/others.  
+- **Expensive-wine traits:** notes like **citrus/green apple, vanilla/spice, bread/biscuit** appear frequently among higher-priced bottles.  
+- **Regional flavor signatures:** cool areas skew **citrus/green-apple**; warmer red regions show **black fruit + vanilla/spice**; rosé regions show **red fruit/strawberry/peach**.  
+- **Price concentration:** a **small top slice of wines drives most of total price** (Pareto-style concentration).
 
-Verified results and exported compact tables for the final visuals. 
+---
 
-📊 Key Findings
+## 🧰 Tech Stack
+- **Database:** MySQL (Workbench for ERD/inspection; SQLAlchemy + PyMySQL from Jupyter).  
+- **Python:** pandas for cleaning and exports; Jupyter for the ETL + analysis notebook.
 
-Premium regions (avg £/L): consistent leaders include Tuscany, Burgundy, South Australia, Bordeaux, California (min wines per region applied). 
+---
 
-Closures & price: Natural cork wines are expensive on average (£35), over 2× screwcap (£16); natural cork dominates share of the portfolio. 
+## 🗂️ Repository Structure
+```
+wine dataset/
+├─ data/
+│
+├─ database/
+│  
+├─ erd/
+│
+├─ sql/
+│
+├─ notebooks/
+---
 
-Traits of expensive wines (>£50): top notes are Bread (90), Citrus Fruit (66), Vanilla (57), Biscuit (50), Green Apple (48). 
 
-Characteristics by region: clear climate/style clusters—citrus/green-apple in cool zones; black fruit + vanilla/spice in warmer red regions; rosé shows red fruit/strawberry/peach. 
+## 🙌 Credits
+Team Slytherin — analysis, modeling, and presentation.
 
-Price concentration: a small top slice of wines accounts for most of total price (curve far from the equal-share diagonal). 
+---
 
-🧰 Tech Stack
 
-MySQL (Workbench + SQL)
-
-Python: pandas, SQLAlchemy (connection/ETL)
-
-Jupyter Notebook (reproducible pipeline)
