@@ -49,17 +49,16 @@ We built a normalized **MySQL** database from a, previously cleaned by us, wine 
 ## 🗂️ Repository Structure
 ```
 wine dataset/
+├─ SQL queries compillation/
+│
+├─ canva slides/
+│  
 ├─ data/
 │
-├─ database/
-│  
 ├─ erd/
 │
-├─ sql/
-│
 ├─ notebooks/
-│
-├─canva slides/
+
 ---
 
 
